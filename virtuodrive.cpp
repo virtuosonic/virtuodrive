@@ -1,7 +1,24 @@
 #include "virtuodrive.h"
-#include "VirtuosonicHelperFunctions.h"
 #include <math.h>
+#include <iostream>
 #define cDenorm pow(10,-30)
+
+
+double Min(double x,double y)
+{
+    if (x < y)
+    	return x;
+    else
+    	return y;
+}
+
+double Max(double x,double y)
+{
+    if (x > y)
+    	return x;
+    else
+    	return y;
+}
 
 virtuodrive::virtuodrive()
 {

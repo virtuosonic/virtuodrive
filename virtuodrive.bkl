@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<makefile>
+	<module id="virtuodrive-vst">
+		<sources>virtuodrive.cpp</sources>
+		<sources>virtuodrive-vst.cpp</sources>
+		<sources>virtuodriveGui.cpp</sources>
+		<win32-res>virtuodrive.rc</win32-res>
+	</module>
+	<module id="virtuodrive-ladspa">
+		<sources>virtuodrive-ladspa.c</sources>
+	</module>
+</makefile>
