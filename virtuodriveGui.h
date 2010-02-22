@@ -1,7 +1,7 @@
 #ifndef VIRTUODRIVEGUI_H
 #define VIRTUODRIVEGUI_H
 
-#include "vstgui.h"
+#include "vstgui.sf/vstgui/vstgui.h"
 #include "vstcontrols.h"
 
 class virtuodriveGui : public AEffGUIEditor , CControlListener
