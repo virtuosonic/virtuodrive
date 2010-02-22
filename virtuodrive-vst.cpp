@@ -2,13 +2,13 @@
 #include <string.h>
 #include <math.h>
 
-#include "main.h"
+#include "virtuodrive-vst.h"
 
-
+/*
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 {
 	return new VirtuodriveVst (audioMaster);
-}
+}*/
 
 virtuodriveProgram::virtuodriveProgram()
 {

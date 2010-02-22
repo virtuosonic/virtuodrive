@@ -1,7 +1,7 @@
 #ifndef __VirtuodriveVst__
 #define __VirtuodriveVst__
 
-#include "plugininterfaces/vst2.x/audioeffectx.h"
+#include "public.sdk/source/vst2.x/audioeffectx.h"
 #include "virtuodrive.h"
 #include "virtuodriveGui.h"
 

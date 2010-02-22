@@ -1,12 +1,30 @@
 <?xml version="1.0"?>
 <makefile>
 	<module id="virtuodrive-vst">
+		<cxxflags>-I./vstsdk2.4/</cxxflags>
+		<cxxflags>-I./vstsdk2.4/public.sdk/source/vst2.x/</cxxflags>
+		<cxxflags>-I./vstsdk2.4/vstgui.sf/vstgui/</cxxflags>
+		<!--virtuodrive vst edition -->
 		<sources>virtuodrive.cpp</sources>
 		<sources>virtuodrive-vst.cpp</sources>
 		<sources>virtuodriveGui.cpp</sources>
 		<win32-res>virtuodrive.rc</win32-res>
+		<!--vstsdk2.4-->
+		<sources>vstsdk2.4/public.sdk/source/vst2.x/audioeffect.cpp</sources>
+		<sources>vstsdk2.4/public.sdk/source/vst2.x/audioeffectx.cpp</sources>
+		<sources>vstsdk2.4/public.sdk/source/vst2.x/vstplugmain.cpp</sources>
+		<!-- vstgui.sf -->
+		<sources>vstsdk2.4/vstgui.sf/vstgui/vstgui.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/vstcontrols.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/plugguieditor.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/ctabview.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/cscrollview.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/cfileselector.cpp</sources>
+		<sources>vstsdk2.4/vstgui.sf/vstgui/aeffguieditor.cpp</sources>
 	</module>
+	<!--
 	<module id="virtuodrive-ladspa">
 		<sources>virtuodrive-ladspa.c</sources>
 	</module>
+	-->
 </makefile>
