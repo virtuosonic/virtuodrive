@@ -4,11 +4,11 @@
 
 #include "virtuodrive-vst.h"
 
-/*
+
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 {
 	return new VirtuodriveVst (audioMaster);
-}*/
+}
 
 virtuodriveProgram::virtuodriveProgram()
 {

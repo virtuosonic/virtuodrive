@@ -1,9 +1,22 @@
 <?xml version="1.0"?>
 <makefile>
 	<module id="virtuodrive-vst">
-		<cxxflags>-I./vstsdk2.4/</cxxflags>
-		<cxxflags>-I./vstsdk2.4/public.sdk/source/vst2.x/</cxxflags>
-		<cxxflags>-I./vstsdk2.4/vstgui.sf/vstgui/</cxxflags>
+		<!--vstsdk2.4 include dirs-->
+		<cxxflags>-Ivstsdk2.4/</cxxflags>
+		<cxxflags>-Ivstsdk2.4/public.sdk/source/vst2.x/</cxxflags>
+		<cxxflags>-Ivstsdk2.4/vstgui.sf/vstgui/</cxxflags>
+		<!-- defines -->
+		<cxxflags>-DWIN32</cxxflags>
+		<cxxflags>-DNDEBUG</cxxflags>
+		<cxxflags>-D_WINDOWS</cxxflags>
+		<cxxflags>-D_USRDLL</cxxflags>
+		<cxxflags>-DADELAY_EXPORTS</cxxflags>
+		<cxxflags>-D_CRT_SECURE_NO_DEPRECATE=1</cxxflags>
+		<!--windows libs-->
+		<ldflags>-lole32</ldflags>
+		<ldflags>-lgdi32</ldflags>
+		<ldflags>-lcomctl32</ldflags>
+		<ldflags>-luuid</ldflags>
 		<!--virtuodrive vst edition -->
 		<sources>virtuodrive.cpp</sources>
 		<sources>virtuodrive-vst.cpp</sources>
@@ -16,13 +29,13 @@
 		<!-- vstgui.sf -->
 		<sources>vstsdk2.4/vstgui.sf/vstgui/vstgui.cpp</sources>
 		<sources>vstsdk2.4/vstgui.sf/vstgui/vstcontrols.cpp</sources>
-		<sources>vstsdk2.4/vstgui.sf/vstgui/plugguieditor.cpp</sources>
+		<!--<sources>vstsdk2.4/vstgui.sf/vstgui/plugguieditor.cpp</sources>-->
 		<sources>vstsdk2.4/vstgui.sf/vstgui/ctabview.cpp</sources>
 		<sources>vstsdk2.4/vstgui.sf/vstgui/cscrollview.cpp</sources>
-		<sources>vstsdk2.4/vstgui.sf/vstgui/cfileselector.cpp</sources>
+		<!--<sources>vstsdk2.4/vstgui.sf/vstgui/cfileselector.cpp</sources>-->
 		<sources>vstsdk2.4/vstgui.sf/vstgui/aeffguieditor.cpp</sources>
 	</module>
-	<!--
+	<!--on heavy development
 	<module id="virtuodrive-ladspa">
 		<sources>virtuodrive-ladspa.c</sources>
 	</module>
