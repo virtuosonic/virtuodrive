@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <makefile>
-	<module id="virtuodrive-vst">
+	<module cond="PLATFORM_WIN32=='1'" id="virtuodrive-vst">
 		<!--vstsdk2.4 include dirs-->
 		<cxxflags>-Ivstsdk2.4/</cxxflags>
 		<cxxflags>-Ivstsdk2.4/public.sdk/source/vst2.x/</cxxflags>
@@ -35,9 +35,8 @@
 		<!--<sources>vstsdk2.4/vstgui.sf/vstgui/cfileselector.cpp</sources>-->
 		<sources>vstsdk2.4/vstgui.sf/vstgui/aeffguieditor.cpp</sources>
 	</module>
-	<!--on heavy development
 	<module id="virtuodrive-ladspa">
+		<cflags>-Wall</cflags>
 		<sources>virtuodrive-ladspa.c</sources>
 	</module>
-	-->
 </makefile>
