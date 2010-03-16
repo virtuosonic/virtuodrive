@@ -1,0 +1,267 @@
+//Developed by Gabriel Espinoza http://virtuosonic.users.sourceforge.net
+//licensed under the GPL version 3
+//for more details see http://www.gnu.org/licenses/gpl-3.0.html
+
+desc: Virtuodrive
+slider1:25<-10,60,1>-Gain (dB)
+slider2:50<0,99,1>-porcent (%)
+slider3:300<20,1000,1>-hp (Hz)
+slider4:0<-24,0,.1>-filter
+
+filename:0,virtuodrive.png
+filename:1,vpot.png
+
+@init
+
+cDenorm = 10^-30;
+//gui
+pot_y=130;
+pot_h=56;
+pot1=57;
+pot2=117;
+pot3=177;
+pot4=237;
+
+gfx_clear = -1;
+lastscreensz=-1; // last size
+ned_redraw=1;
+gfx_a=1;
+
+//hp
+hpf = 0;
+gain1 = 0;
+freq1 = slider3;
+a1 = 1;
+s1 = 1;
+q1 = 1 / (sqrt((a1 + 1/a1)*(1/s1 - 1) + 2));
+w01 = 2 * $pi * freq1/srate;
+cosw01 = cos(w01);
+sinw01 = sin(w01);
+alpha1 = sinw01 / (2 * q1);
+
+b01 = (1 + cosw01)/2;
+b11 = -(1 + cosw01);
+b21 = (1 + cosw01)/2;
+a01 = 1 + alpha1;
+a11 = -2 * cosw01;
+a21 = 1 - alpha1;
+b01 /= a01;
+b11 /= a01;
+b21 /= a01;
+a11 /= a01;
+a21 /= a01;
+
+//eq lows
+c0=c1=c2=0;
+ldelay1=ldelay2=rdelay1=rdelay2=0;
+li1=li2=ri1=ri2=0;
+
+arc=314.15926535897932384626433832795/(srate*0.5);
+a=(sin(arc)*4)*0.25;
+tmp=1/(1+a);
+
+c0=tmp*a*(2.1748021039363989495034112785446);
+c1=tmp*2*cos(arc);
+c2=tmp*(a-1);
+
+//lowpass
+a3 = 1;
+  s3 = 1;
+  q3 = 1 / (sqrt((a3 + 1/a3)*(1/s3 - 1) + 2));
+  w03 = 100530.96491487338363080458826494/srate;
+  cosw03 = cos(w03);
+  sinw03 = sin(w03);
+  alpha3 = sinw03 / (2 * q3);
+
+  b03 = (1 - cosw03)/2;
+  b13 = (1 - cosw03);
+  b23 = (1 - cosw03)/2;
+  a03 = 1 + alpha3;
+  a13 = -2 * cosw03;
+  a23 = 1 - alpha3;
+  b03 /= a03;
+  b13 /= a03;
+  b23 /= a03;
+  a13 /= a03;
+  a23 /= a03;
+
+
+fd = 10^-30;
+
+@slider
+
+arcm=15707.963267948966192313216916398/(srate*0.5);
+am=(sin(arcm)*2) * 0.25;
+tmpm=1/(1+a);
+
+c0m=tmpm*a*(2.1748021039363989495034112785446);
+c1m=tmpm*2*cos(arcm);
+c2m=tmpm*(am-1);
+
+gain=2^(slider1/6);
+k = 2*(slider2/100)/(1-(slider2/100));
+
+freq1 = slider3;
+
+slider3 == 20 ? hpf = 0 : (
+
+hpf = 1;
+a1 = 1;
+s1 = 1;
+q1 = 1 / (sqrt((a1 + 1/a1)*(1/s1 - 1) + 2));
+w01 = 2 * $pi * freq1/srate;
+cosw01 = cos(w01);
+sinw01 = sin(w01);
+alpha1 = sinw01 / (2 * q1);
+
+b01 = (1 + cosw01)/2;
+b11 = -(1 + cosw01);
+b21 = (1 + cosw01)/2;
+a01 = 1 + alpha1;
+a11 = -2 * cosw01;
+a21 = 1 - alpha1;
+b01 /= a01;
+b11 /= a01;
+b21 /= a01;
+a11 /= a01;
+a21 /= a01;
+);
+
+@sample
+
+spl0*=gain;
+spl1*=gain;
+
+spl0 = (1+k)*spl0/(1+k*abs(spl0));
+spl1 = (1+k)*spl1/(1+k*abs(spl1));
+
+spl0=min(max(spl0,-1),.5);
+spl1=min(max(spl1,-1),.5);
+
+@gfx
+
+gfx_x=-0;gfx_y=0;
+
+need_redraw == 1 ? (
+    gfx_blit(0,1,0);
+
+    gfx_x=pot1;gfx_y=pot_y;
+    gfx_blit(1,1,((slider3-510)*0.005389590391130274099168463196797));
+
+    gfx_x=pot2;
+    gfx_blit(1,1,((slider1-25)*0.078534031413612565445026178010471));
+
+    gfx_x=pot3;
+    gfx_blit(1,1,((slider2-49.5)*0.055529113120736157385372045057909));
+
+    gfx_x=pot4;
+    gfx_blit(1,1,((slider4+12)*0.22905759162303664921465968586387));
+
+    gfx_r=.2;gfx_g=.3;gfx_b=1;
+
+    gfx_x=70;gfx_y=215;
+    gfx_drawnumber(slider3,0);
+
+    gfx_x=136;
+    gfx_drawnumber(slider1,0);
+
+    gfx_x=196;
+    gfx_drawnumber(slider2,0);
+
+    gfx_x=253;gfx_y=215;
+    gfx_drawnumber(slider4,0);
+
+need_redraw=0;
+
+);
+(mouse_cap&1) ? (
+    need_redraw=1;
+    mouse_y > pot_y && mouse_y < pot_y+pot_h ? (
+
+    mouse_x > pot1 && mouse_x < pot1+pot_h ? (mousedown = 1;val=10);
+    mouse_x > pot2 && mouse_x < pot2+pot_h ? (mousedown = 2;val=3);
+    mouse_x > pot3 && mouse_x < pot3+pot_h ? (mousedown = 3;val=5);
+    mouse_x > pot4 && mouse_x < pot4+pot_h ? (mousedown = 4;val=1);
+
+    );
+
+    mouse_cap == 5 ? (
+        mousedown == 1 ? val/=10;
+        mousedown == 2 ? val/=3;
+        mousedown == 3 ? val/=5
+    );
+    mouse_cap == 9 ? (val*=3);
+):(
+mousedown=0;
+needredraw=0;
+);
+
+
+cursz = gfx_w * 1000000 + gfx_h; // detect changes in either w or h.
+cursz != lastscreensz ? (
+      need_redraw=1;
+    lastscreensz=cursz;
+);
+
+
+mousedown == 1 ? (
+    mouse_y > save_y ? (slider3 = max(20,slider3-val););
+    mouse_y < save_y ? (slider3 = min(1000,slider3+val););
+    save_y=mouse_y;
+);
+
+mousedown == 2 ? (
+    mouse_y > save_y ? (slider1 = max(-10,slider1-val););
+    mouse_y < save_y ? (slider1 = min(60,slider1+val););
+    save_y=mouse_y;
+);
+
+mousedown == 3 ? (
+    mouse_y > save_y ? (slider2 = max(0,slider2-val););
+    mouse_y < save_y ? (slider2 = min(99,slider2+val););
+    save_y=mouse_y;
+);
+
+mousedown == 4 ? (
+    mouse_y > save_y ? (slider4 = max(-24,slider4-val););
+    mouse_y < save_y ? (slider4 = min(0,slider4+val););
+    save_y=mouse_y;
+);
+
+//copy @s
+
+gain=2^(slider1/6);
+k = 2*(slider2/100)/(1-(slider2/100));
+
+
+gainf=2^(slider4/6);
+freqf=2000;
+xf = exp(-2.0*$pi*freqHP/srate);
+a0f = 1.0-xf;
+b1f = -xf;
+
+freq1 = slider3;
+
+slider3 == 20 ? hpf = 0 : (
+
+hpf = 1;
+a1 = 1;
+s1 = 1;
+q1 = 1 / (sqrt((a1 + 1/a1)*(1/s1 - 1) + 2));
+w01 = 2 * $pi * freq1/srate;
+cosw01 = cos(w01);
+sinw01 = sin(w01);
+alpha1 = sinw01 / (2 * q1);
+
+b01 = (1 + cosw01)/2;
+b11 = -(1 + cosw01);
+b21 = (1 + cosw01)/2;
+a01 = 1 + alpha1;
+a11 = -2 * cosw01;
+a21 = 1 - alpha1;
+b01 /= a01;
+b11 /= a01;
+b21 /= a01;
+a11 /= a01;
+a21 /= a01;
+);
