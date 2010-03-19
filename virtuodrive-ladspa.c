@@ -2,13 +2,28 @@
 *Name:      virtuodrive-ladspa.c
 *Created:       21-mar-2009
 *Author:        Gabriel Espinoza
+*Copyright: 2010Gabriel Espinoza
+*License: GPL version 3
 ************************************************/
+/*
+virtuodrive is software libre; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+virtuodrive is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with virtuodrive. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include <ladspa.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define min(x,y) x > y ? y : x
 #define max(x,y) x > y ? x : y
 
@@ -65,10 +80,8 @@ void runVirtuodrive(LADSPA_Handle Instance,unsigned long SampleCount)
 	LADSPA_Data fGain;
 	LADSPA_Data fAmt;
 	ladspa_virtuodrive* psVirtuodrive;
-	/*unsigned long lSampleIndex;*/
 
 	psVirtuodrive = (ladspa_virtuodrive*)Instance;
-
 	pfInput = psVirtuodrive->input;
 	pfOutput = psVirtuodrive->output;
 	fGain = *(psVirtuodrive->gain);
@@ -111,7 +124,7 @@ void _init()
 	{
 		vdDescriptor->UniqueID = 356;
 		vdDescriptor->Label = strdup("Virtuodrive");
-		vdDescriptor->Properties = LADSPA_PROPERTY_REALTIME;
+		vdDescriptor->Properties = LADSPA_PROPERTY_HARD_RT_CAPABLE;
 		vdDescriptor->Name =
 			strdup("Virtuodrive");
 		vdDescriptor->Maker =
@@ -129,12 +142,8 @@ void _init()
 		port_descriptors[VD_IN] = LADSPA_PORT_INPUT | LADSPA_PORT_AUDIO;
 		port_descriptors[VD_OUT] =	LADSPA_PORT_OUTPUT | LADSPA_PORT_AUDIO;
 
-		port_range_hints = (LADSPA_PortRangeHint *)calloc(4,
-					 sizeof(LADSPA_PortRangeHint));
-		vdDescriptor->PortRangeHints =
-			(const LADSPA_PortRangeHint *)port_range_hints;
-		port_range_hints[VD_GAIN].HintDescriptor =LADSPA_HINT_BOUNDED_BELOW |
-				LADSPA_HINT_BOUNDED_ABOVE | LADSPA_HINT_DEFAULT_0;
+		port_range_hints = (LADSPA_PortRangeHint *)calloc(4,sizeof(LADSPA_PortRangeHint));
+		vdDescriptor->PortRangeHints =	(const LADSPA_PortRangeHint *)port_range_hints;
 		port_range_hints[VD_GAIN].LowerBound = 0;
 		port_range_hints[VD_GAIN].UpperBound = 60;
 		port_range_hints[VD_AMT].HintDescriptor = LADSPA_HINT_BOUNDED_BELOW |
@@ -147,10 +156,10 @@ void _init()
 		port_names = (char **)calloc(4, sizeof(char*));
 		vdDescriptor->PortNames =
 			(const char **)port_names;
-		port_names[VD_GAIN]=strdup("Gain (dB)");
-		port_names[VD_AMT]=strdup("Amount (%)");
-		port_names[VD_IN]=strdup("Input");
-		port_names[VD_OUT]=strdup("Output");
+		strcpy(port_names[VD_GAIN],"Gain (dB)");
+		strcpy(port_names[VD_AMT],"Amount (%)");
+		strcpy(port_names[VD_IN],"Input");
+		strcpy(port_names[VD_OUT],"Output");
 
 		vdDescriptor->instantiate = instantiateVirtuodrive;
 		vdDescriptor->activate = NULL;
