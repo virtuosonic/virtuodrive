@@ -35,7 +35,7 @@
 		<!--<sources>vstsdk2.4/vstgui.sf/vstgui/cfileselector.cpp</sources>-->
 		<sources>vstsdk2.4/vstgui.sf/vstgui/aeffguieditor.cpp</sources>
 	</module>
-	<module id="virtuodrive-ladspa">
+	<module cond="PLATFORM_UNIX=='1'" id="virtuodrive-ladspa">
 		<cflags>-Wall</cflags>
 		<sources>virtuodrive-ladspa.c</sources>
 	</module>
