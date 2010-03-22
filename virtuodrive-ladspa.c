@@ -33,6 +33,7 @@ along with virtuodrive. If not, see <http://www.gnu.org/licenses/>.
 #define VD_IN 2
 #define VD_OUT 3
 
+
 LADSPA_Descriptor *vdDescriptor = NULL;
 
 /* struct*/
@@ -84,7 +85,7 @@ void runVirtuodrive(LADSPA_Handle Instance,unsigned long SampleCount)
 	psVirtuodrive = (ladspa_virtuodrive*)Instance;
 	pfInput = psVirtuodrive->input;
 	pfOutput = psVirtuodrive->output;
-	fGain = *(psVirtuodrive->gain);
+	fGain =  pow(2,*(psVirtuodrive->gain) / 6);
 	fAmt = *(psVirtuodrive->amt);
 	LADSPA_Data k = 2 * fAmt / (1 - fAmt);
 	//
@@ -105,7 +106,8 @@ static void cleanupVirtuodrive(LADSPA_Handle instance) {
 
 void _fini()
 {
-	if (vdDescriptor) {
+	if (vdDescriptor)
+	{
 		free((LADSPA_PortDescriptor *)vdDescriptor->PortDescriptors);
 		free((char **)vdDescriptor->PortNames);
 		free((LADSPA_PortRangeHint *)vdDescriptor->PortRangeHints);
@@ -154,12 +156,11 @@ void _init()
 		port_range_hints[VD_OUT].HintDescriptor = 0;
 
 		port_names = (char **)calloc(4, sizeof(char*));
-		vdDescriptor->PortNames =
-			(const char **)port_names;
-		strcpy(port_names[VD_GAIN],"Gain (dB)");
-		strcpy(port_names[VD_AMT],"Amount (%)");
-		strcpy(port_names[VD_IN],"Input");
-		strcpy(port_names[VD_OUT],"Output");
+		vdDescriptor->PortNames = (const char **)port_names;
+		port_names[VD_GAIN] = strdup("Gain (dB)");
+		port_names[VD_AMT] = strdup("Amount (%)");
+		port_names[VD_IN]=strdup("Input");
+		port_names[VD_OUT] = strdup("Output");
 
 		vdDescriptor->instantiate = instantiateVirtuodrive;
 		vdDescriptor->activate = NULL;
@@ -184,3 +185,4 @@ const LADSPA_Descriptor* ladspa_descriptor(unsigned long Index)
 			break;
 	}
 }
+
