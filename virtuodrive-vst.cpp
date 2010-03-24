@@ -23,22 +23,18 @@ virtuodriveProgram::virtuodriveProgram()
 VirtuodriveVst::VirtuodriveVst (audioMasterCallback audioMaster)
 	: AudioEffectX (audioMaster, kNumPrograms, kNumParams)
 {
-	// init
 	editor = new virtuodriveGui(this);
 	setEditor(editor);
 	programs = new virtuodriveProgram[numPrograms];
 	fGain = fAmount = fOutput = 0;
-
     virtuodrive1 = new virtuodrive();
     virtuodrive2 = new virtuodrive();
-
 	if (programs)
 		setProgram (0);
 
-	setNumInputs (2);	// stereo input
-	setNumOutputs (2);	// stereo output
-	setUniqueID ('vtd1');	// this should be unique, use the Steinberg web page for plugin Id registration
-
+	setNumInputs (2);// stereo input
+	setNumOutputs (2);// stereo output
+	setUniqueID ('vtdv');//this is unique, it was registered at the Steinberg web page
 	resume ();		// flush buffer
 }
 

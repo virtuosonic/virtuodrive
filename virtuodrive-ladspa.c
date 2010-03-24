@@ -124,7 +124,7 @@ void _init()
 	vdDescriptor = (LADSPA_Descriptor *)malloc(sizeof(LADSPA_Descriptor));
 	if (vdDescriptor)
 	{
-		vdDescriptor->UniqueID = 356;
+		vdDescriptor->UniqueID = 4381;//Richard Furse assign me the range: 4381 - 4420
 		vdDescriptor->Label = strdup("Virtuodrive");
 		vdDescriptor->Properties = LADSPA_PROPERTY_HARD_RT_CAPABLE;
 		vdDescriptor->Name =
