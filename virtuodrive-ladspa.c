@@ -132,7 +132,7 @@ void _init()
 		vdDescriptor->Maker =
 			strdup("Gabriel Espinoza");
 		vdDescriptor->Copyright =
-			strdup("GPLv3");
+			strdup("GPL3");
 		vdDescriptor->PortCount = 4;
 
 		port_descriptors = (LADSPA_PortDescriptor *)calloc(4,
