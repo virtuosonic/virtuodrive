@@ -5,7 +5,6 @@
 virtuodriveGui::virtuodriveGui(AudioEffect *effect) : AEffGUIEditor(effect)
 {
     bg = new CBitmap(BmpBg);
-
     rect.left   = 0;
     rect.top    = 0;
     rect.right  = (VstInt16)bg->getWidth();

@@ -195,7 +195,7 @@ bool VirtuodriveVst::getProductString (char* text)
 
 bool VirtuodriveVst::getVendorString (char* text)
 {
-	strcpy (text, "Virtuosonic Software");
+	strcpy (text, "Virtuosonic");
 	return true;
 }
 
