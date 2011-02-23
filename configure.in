@@ -1,7 +1,0 @@
-AC_PREREQ(2.53)
-AC_INIT(virtuodrive,1)
-AC_CANONICAL_SYSTEM
-AC_PROG_CXX
-AC_BAKEFILE([m4_include(autoconf_inc.m4)])
-AC_CONFIG_FILES([Makefile])
-AC_OUTPUT
