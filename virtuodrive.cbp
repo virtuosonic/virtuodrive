@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="virtuodrive" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\virtuodrive" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\virtuodrive" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-DWIN32" />
+			<Add option="-DNDEBUG" />
+			<Add option="-D_WINDOWS" />
+			<Add option="-D_MBCS" />
+			<Add option="-D_USRDLL" />
+			<Add option="-DDRAWTEST_EXPORTS" />
+			<Add option="-DUSE_LIBPNG=1" />
+			<Add directory="$(#vst)" />
+			<Add directory="$(#vst)\public.sdk\source\vst2.x" />
+			<Add directory="$(#vst)\vstgui.sf\vstgui" />
+			<Add directory="$(#vst)\vstgui.sf\zlib" />
+			<Add directory="$(#vst)\vstgui.sf\libpng" />
+		</Compiler>
+		<Linker>
+			<Add library="kernel32" />
+			<Add library="user32" />
+			<Add library="gdi32" />
+			<Add library="winspool" />
+			<Add library="comdlg32" />
+			<Add library="advapi32" />
+			<Add library="shell32" />
+			<Add library="ole32" />
+			<Add library="oleaut32" />
+			<Add library="uuid" />
+			<Add library="odbc32" />
+			<Add library="odbccp32" />
+		</Linker>
+		<Unit filename="Readme.txt" />
+		<Unit filename="bmp00100.png" />
+		<Unit filename="bmp00101.png" />
+		<Unit filename="bmp00102.png" />
+		<Unit filename="virtuodrive-vst.cpp" />
+		<Unit filename="virtuodrive-vst.h" />
+		<Unit filename="virtuodrive.bkl" />
+		<Unit filename="virtuodrive.cpp" />
+		<Unit filename="virtuodrive.h" />
+		<Unit filename="virtuodrive.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="virtuodriveGui.cpp" />
+		<Unit filename="virtuodriveGui.h" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\aeffeditor.h" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\audioeffect.cpp" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\audioeffect.h" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\audioeffectx.cpp" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\audioeffectx.h" />
+		<Unit filename="..\vstsdk2.4\public.sdk\source\vst2.x\vstplugmain.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\png.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngconf.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pnggccrd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngvcrd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\libpng\pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\aeffguieditor.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\aeffguieditor.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\cfileselector.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\cfileselector.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\cscrollview.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\cscrollview.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\ctabview.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\ctabview.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstcontrols.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstcontrols.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstgui.cpp" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstgui.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstkeycode.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstplugscarbon.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstplugsmac.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstplugsmacho.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\vstgui\vstplugsquartz.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\crc32.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\deflate.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\gzio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inffast.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inffixed.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inflate.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\inftrees.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\trees.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\zconf.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\zlib.h" />
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\vstsdk2.4\vstgui.sf\zlib\zutil.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
